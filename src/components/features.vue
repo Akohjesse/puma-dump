@@ -1,24 +1,32 @@
 <template>
     <div class="feature_wrap">
         <div class="feature_wrap_txt">
-            <h2 data-animation="header">{{ data[rhyme].name }}</h2>
-            <p data-animation="paragraph">{{ data[rhyme].name }}</p>
+            <h2 class="text" data-animation="header">{{ data[rhyme].name }}</h2>
+            <p class="text" data-animation="paragraph">{{ data[rhyme].name }}</p>
             <div class="btn">
                 <button>Shop men's</button>
                 <button>shop women's</button>
             </div>
         </div>
         <div class="feature_wrap_imgScroller">
-            <div v-for="re in data" :key="re._id" :class="{ current: re._id == rhyme }" class="img_sect">
+            <div v-for="re in data" :key="re._id" class="img_sect">
                 <img :src="re.imgsrc" alt="" />
             </div>
         </div>
         <div class="feature_wrap_mode">
-            <img class="ass" src="../assets/left.svg" alt="" />
+            <img @click="change(rhyme + -1)" :disabled="rhyme <= 0" :class="{ red: rhyme <= 0 }" class="ass" src="../assets/left.svg" alt="" />
             <div class="feature_wrap_mode_robo">
                 <img @click="change(re._id)" :class="{ zoom: re._id == rhyme }" v-for="re in data" :key="re._id" :src="re.imgsrc" alt="" />
             </div>
-            <img style="transform: rotateY(180deg)" class="ass" src="../assets/left.svg" alt="" />
+            <img
+                @click="change(rhyme + 1)"
+                :disabled="rhyme >= data.length - 1"
+                :class="{ red: rhyme >= data.length - 1 }"
+                style="transform: rotateY(180deg)"
+                class="ass"
+                src="../assets/left.svg"
+                alt=""
+            />
         </div>
     </div>
 </template>
@@ -30,15 +38,26 @@ import gsap from "gsap";
 const rhyme = ref(0);
 
 const change = (val) => {
-    rhyme.value = val;
-    const container = document.querySelector(".feature_wrap_imgScroller");
-    const element = document.querySelector(".current");
-    const distance = element.offsetLeft - container.offsetLeft;
-    gsap.to(container, {
-        duration: 1, // Animation duration in seconds
-        scrollLeft: distance, // Scroll position to animate to
-        ease: "power1.out", // Easing function to use (optional)
+    document.querySelectorAll(".feature_wrap_txt .text").forEach((item) => {
+        item.classList.toggle("disappear");
     });
+    setTimeout(() => {
+        document.querySelectorAll(".feature_wrap_txt .text").forEach((item) => {
+            item.classList.toggle("disappear");
+        });
+    }, 300);
+    setTimeout(() => {
+        rhyme.value = val;
+        const container = document.querySelector(".feature_wrap_imgScroller");
+        const element = document.querySelector(`.img_sect:nth-child(${rhyme.value + 1})`);
+        const distance = element.offsetLeft - container.offsetLeft;
+
+        gsap.to(container, {
+            duration: 1,
+            scrollLeft: distance,
+            ease: "power1.out",
+        });
+    }, 200);
 };
 </script>
 
@@ -49,10 +68,10 @@ const change = (val) => {
         position: absolute;
         left: 10%;
         top: 30%;
-        width: 23%;
+        width: 25%;
         @include flex_col(0.8rem);
         h2 {
-            font-size: toRem(30);
+            font-size: toRem(33);
             color: $blacktxt;
         }
         p {
@@ -77,6 +96,7 @@ const change = (val) => {
         overflow-x: auto;
         flex-wrap: nowrap;
         gap: 0 5rem;
+        cursor: pointer;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         .img_sect {
@@ -115,5 +135,13 @@ const change = (val) => {
 .zoom {
     transform: scale(1.5);
     opacity: 1 !important;
+}
+.red {
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+.disappear {
+    opacity: 0;
+    transition: 0.2s ease-in-out;
 }
 </style>

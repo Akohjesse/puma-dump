@@ -29,6 +29,10 @@ button {
     font-size: 1rem;
     border: none;
 }
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
 canvas {
     top: 0;
     bottom: 0;
