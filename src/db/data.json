@@ -1,7 +1,32 @@
 [
     {
-        "_id":1,
-        "name":"Deviate NITRO 2",
-        "txt":"Max cushioning with improved efficiency for long runs."
+        "_id": 0,
+        "name": "Deviate NITRO 2",
+        "txt": "Max cushioning with improved efficiency for long runs.",
+        "imgsrc": "https://res.cloudinary.com/hdsdev/image/upload/c_fill,f_auto,g_center,h_800,q_60,w_800/v1/shoe_finder/products/376807_03_sv01"
+    },
+    {
+        "_id": 1,
+        "name": "Deviate NITRO Elite",
+        "txt": "MAX RESPONSIVENESS AND PROPULSION FOR COMPETITION",
+        "imgsrc": "https://res.cloudinary.com/hdsdev/image/upload/c_fill,f_auto,g_center,h_800,q_60,w_800/v1/shoe_finder/products/195504_02_sv01"
+    },
+    {
+        "_id": 2,
+        "name": "Velocity NITRO 2",
+        "txt": "Cushioning and responsiveness for every run.",
+        "imgsrc": "https://res.cloudinary.com/hdsdev/image/upload/c_fill,f_auto,g_center,h_800,q_60,w_800/v1/shoe_finder/products/Magnify-NITRO_mens_195170_09_sv01"
+    },
+    {
+        "_id": 3,
+        "name": "Magnify NITRO",
+        "txt": "Max cushioning and responsiveness for every run.",
+        "imgsrc": "https://res.cloudinary.com/hdsdev/image/upload/c_fill,f_auto,g_center,h_800,q_60,w_800/v1/shoe_finder/products/Deviate-NITRO-Elite_mens_195204_03_sv01"
+    },
+    {
+        "_id": 4,
+        "name": "Voyage NITRO",
+        "txt": "CUSHIONING AND TRACTION FOR ALL TERRAIN",
+        "imgsrc": "https://res.cloudinary.com/hdsdev/image/upload/c_fill,f_auto,g_center,h_800,q_60,w_800/v1/shoe_finder/products/195337_01_sv01"
     }
 ]
