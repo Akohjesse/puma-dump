@@ -71,7 +71,6 @@ onMounted(() => {
             toggleActions: "play reset none restart",
             end: "+=900",
             pinSpacer: false,
-            markers: true,
             pin: "body",
             onUpdate: (self) => {
                 skew = self.getVelocity() / -100;
