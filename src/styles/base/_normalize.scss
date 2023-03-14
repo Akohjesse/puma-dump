@@ -7,6 +7,7 @@ html {
     scroll-behavior: initial;
     height: 100vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     font-size: calc(100vw / 1440 * 16);
 }
 body {

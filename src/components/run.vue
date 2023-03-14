@@ -55,10 +55,34 @@
 <script setup>
 import { IO } from "../animations/observe";
 import { onMounted } from "vue";
-
+import gsap from "gsap";
 onMounted(() => {
-    IO(document.querySelector(".run_pomo")).then(() => {
+    IO(document.querySelector(".run_pomo"), { threshold: 1 }).then(() => {
         document.querySelector(".run_pomo").classList.add("animate_zoom");
+    });
+    const wrap = document.querySelector(".run");
+    let skew = 0;
+    let sections = gsap.utils.toArray(".seed");
+    let tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".run",
+            start: "top top",
+            scrub: -1,
+            toggleActions: "play reset none restart",
+            end: "+=900",
+            pinSpacer: false,
+            markers: true,
+            pin: "body",
+            onUpdate: (self) => {
+                skew = self.getVelocity() / -100;
+            },
+        },
+    });
+    tl.to(sections, {
+        x: -wrap.offsetWidth * 3,
+        duration: 5,
+        skewY: () => skew,
+        ease: "power1.easeInOut",
     });
 });
 </script>
@@ -67,7 +91,7 @@ onMounted(() => {
 .run {
     height: 100vh;
     display: flex;
-    overflow-x: auto;
+    overflow: hidden;
     flex-wrap: nowrap;
     .seed {
         flex-shrink: 0;
@@ -89,14 +113,17 @@ onMounted(() => {
         }
     }
     &_photogrid {
-        height: 100%;
+        width: 200%;
         @include flex(center, center, 0 3rem);
         padding: 3rem;
         .img {
             height: 100%;
+            width: 100%;
             overflow: hidden;
             img {
+                width: auto;
                 height: 100%;
+                min-width: 30rem;
                 transition: scale 1s ease-in-out;
                 &:hover {
                     scale: 1.2;
@@ -121,8 +148,9 @@ onMounted(() => {
             font-size: toRem(100);
         }
         p {
-            width: 50%;
+            width: 55%;
             color: white;
+            text-align: center;
             font-size: toRem(25);
             line-height: 2.4rem;
         }

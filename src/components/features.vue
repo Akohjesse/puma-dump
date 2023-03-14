@@ -72,6 +72,7 @@ const change = (val) => {
         @include flex_col(0.8rem);
         h2 {
             font-size: toRem(33);
+            font-weight: 500;
             color: $blacktxt;
         }
         p {
