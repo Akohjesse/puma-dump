@@ -55,7 +55,7 @@ const change = (val) => {
         gsap.to(container, {
             duration: 1,
             scrollLeft: distance,
-            ease: "power1.out",
+            ease: "circ.easeInOut",
         });
     }, 200);
 };
@@ -93,7 +93,7 @@ const change = (val) => {
     }
     &_imgScroller {
         display: flex;
-        overflow-x: auto;
+        overflow-x: hidden;
         flex-wrap: nowrap;
         gap: 0 5rem;
         cursor: pointer;
